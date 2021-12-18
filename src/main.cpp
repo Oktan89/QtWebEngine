@@ -5,13 +5,15 @@
 #include <QPushButton>
 #include <QWebEngineView>
 #include <QLineEdit>
+#include "Oktan.h"
+
 
 
 int main(int argc, char**argv)
 {
     QApplication app(argc, argv);
 
-    auto mainWindow = new QWidget(nullptr);
+    auto mainWindow = new Oktan;
 
     auto vBox = new QVBoxLayout(mainWindow);
 
@@ -28,10 +30,11 @@ int main(int argc, char**argv)
     vBox->addWidget(button);
     vBox->addWidget(button2);
 
-    QWidget::connect(lineEdit, &QLineEdit::returnPressed, [lineEdit, webView](){
+    QWidget::connect(lineEdit, &QLineEdit::returnPressed, [lineEdit, webView, mainWindow](){
         webView->load(lineEdit->text());
     });
 
+  
     QWidget::connect(button, &QPushButton::clicked, [&mainWindow](){
         mainWindow->setWindowTitle("Oktan");
     });
@@ -45,4 +48,5 @@ int main(int argc, char**argv)
     
 
     return app.exec();
+
 }
