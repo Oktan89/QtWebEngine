@@ -8,5 +8,5 @@ class Oktan: public QWidget
 public:
 
 signals:
-   void test(int message);
+   void test(QString message);
 };

@@ -30,6 +30,10 @@ int main(int argc, char**argv)
     vBox->addWidget(button);
     vBox->addWidget(button2);
 
+    QWidget::connect(mainWindow, &Oktan::test, [=](QString message){
+        mainWindow->setWindowTitle(message);
+    });
+
     QWidget::connect(lineEdit, &QLineEdit::returnPressed, [lineEdit, webView, mainWindow](){
         webView->load(lineEdit->text());
     });
@@ -37,6 +41,7 @@ int main(int argc, char**argv)
   
     QWidget::connect(button, &QPushButton::clicked, [&mainWindow](){
         mainWindow->setWindowTitle("Oktan");
+        emit mainWindow->test("Hello world");
     });
 
     QWidget::connect(button2, &QPushButton::clicked, [&mainWindow](){
